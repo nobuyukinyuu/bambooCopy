@@ -1,0 +1,287 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://AL/Algorithm-0.png" type="Texture" id=3]
+[ext_resource path="res://AL/Algorithm-1.png" type="Texture" id=4]
+[ext_resource path="res://AL/Algorithm-2.png" type="Texture" id=5]
+[ext_resource path="res://AL/Algorithm-3.png" type="Texture" id=6]
+[ext_resource path="res://AL/Algorithm-4.png" type="Texture" id=7]
+[ext_resource path="res://AL/Algorithm-5.png" type="Texture" id=8]
+[ext_resource path="res://AL/Algorithm-6.png" type="Texture" id=9]
+[ext_resource path="res://AL/Algorithm-7.png" type="Texture" id=10]
+[ext_resource path="res://OperatorPanel.tscn" type="PackedScene" id=11]
+
+[sub_resource type="StyleBoxFlat" id=1]
+draw_center = false
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color( 0.384314, 0.384314, 0.384314, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.0509804, 0.0588235, 0.113725, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.188235, 0.203922, 0.364706, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="lblBank" type="Label" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 80.0
+margin_bottom = 51.0
+text = "OPM Bank Library:	"
+
+[node name="lblInstruments" type="Label" parent="."]
+margin_left = 420.0
+margin_top = 20.0
+margin_right = 480.0
+margin_bottom = 51.0
+text = "Instruments:"
+
+[node name="lblOpt" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -184.0
+margin_top = 20.0
+margin_right = -21.0
+margin_bottom = 51.0
+text = "Options:"
+align = 2
+
+[node name="lblAL" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -314.0
+margin_top = 150.0
+margin_right = -151.0
+margin_bottom = 170.0
+text = "Algorithm (AL, CON):"
+
+[node name="lblEnvelope" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -314.0
+margin_top = 320.0
+margin_right = -151.0
+margin_bottom = 340.0
+text = "Envelope (EG):"
+
+[node name="ProgramName" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -314.0
+margin_top = 100.0
+margin_right = -21.0
+margin_bottom = 131.0
+custom_styles/normal = SubResource( 1 )
+text = "Instrument (none selected)"
+align = 1
+valign = 1
+
+[node name="lblStatus" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -284.0
+margin_top = -57.0
+margin_right = -81.0
+margin_bottom = -9.0
+text = "BambooCopy v0.1
+by Nobuyuki
+13.NOV.2019"
+align = 2
+
+[node name="Items" type="ItemList" parent="."]
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 40.0
+margin_right = 410.0
+margin_bottom = -20.0
+grow_horizontal = 0
+rect_min_size = Vector2( 240, 0 )
+
+[node name="Instruments" type="ItemList" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 420.0
+margin_top = 40.0
+margin_right = -364.0
+margin_bottom = -20.0
+rect_min_size = Vector2( 240, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -74.0
+margin_top = -70.0
+margin_right = -10.0
+margin_bottom = -6.0
+texture = ExtResource( 2 )
+
+[node name="ignoreNoname" type="CheckButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -324.0
+margin_top = 40.0
+margin_right = -9.0
+margin_bottom = 80.0
+pressed = true
+text = "Ignore \"no Name\" titles"
+align = 2
+
+[node name="AL" type="Panel" parent="."]
+editor/display_folded = true
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -314.0
+margin_top = 170.0
+margin_right = -24.0
+margin_bottom = 310.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="0" type="TextureRect" parent="AL"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+
+[node name="1" type="TextureRect" parent="AL"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+
+[node name="2" type="TextureRect" parent="AL"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+
+[node name="3" type="TextureRect" parent="AL"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+
+[node name="4" type="TextureRect" parent="AL"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+
+[node name="5" type="TextureRect" parent="AL"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+
+[node name="6" type="TextureRect" parent="AL"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 9 )
+
+[node name="7" type="TextureRect" parent="AL"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 10 )
+
+[node name="OP" type="TabContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -322.0
+margin_top = 340.0
+margin_right = -22.0
+margin_bottom = 490.0
+tab_align = 0
+
+[node name="M1" type="Tabs" parent="OP"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Panel" parent="OP/M1" instance=ExtResource( 11 )]
+
+[node name="C1" type="Tabs" parent="OP"]
+editor/display_folded = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Panel" parent="OP/C1" instance=ExtResource( 11 )]
+
+[node name="M2" type="Tabs" parent="OP"]
+editor/display_folded = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Panel" parent="OP/M2" instance=ExtResource( 11 )]
+
+[node name="C2" type="Tabs" parent="OP"]
+editor/display_folded = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Panel" parent="OP/C2" instance=ExtResource( 11 )]
+
+[node name="Preview" type="Button" parent="."]
+modulate = Color( 0.639216, 0.8, 1, 1 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -151.0
+margin_top = 500.0
+margin_right = -28.0
+margin_bottom = 548.0
+rect_min_size = Vector2( 0, 48 )
+text = "Preview"
+
+[node name="CopyEnvelope" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -284.0
+margin_top = 500.0
+margin_right = -161.0
+margin_bottom = 548.0
+rect_min_size = Vector2( 0, 48 )
+text = "Copy FM_ENV"
+[connection signal="item_activated" from="Items" to="." method="_on_Items_item_activated"]
+[connection signal="item_activated" from="Instruments" to="." method="_on_Instruments_item_activated"]
+[connection signal="item_selected" from="Instruments" to="." method="_on_Instruments_item_selected"]
+[connection signal="pressed" from="Preview" to="." method="_on_Preview_pressed"]
+[connection signal="pressed" from="CopyEnvelope" to="." method="_on_CopyEnvelope_pressed"]
