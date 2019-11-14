@@ -86,6 +86,7 @@ func set_line_to_full():
 		$Line.points[i].y = 0
 
 	$Line.points[0].y = rect_size.y
+	$Line.points[5].x = 294  #Replace with width?
 	$Line.points[5].y = rect_size.y
 
 func set_line_to_zero():

@@ -1,6 +1,6 @@
 extends Control
 var paths = []
-const LIB_PATH = "res://defaultLibrary/"
+var LIB_PATH = "res://defaultLibrary/"
 
 #Enums for the MiOPMdrv format positions.
 enum LFO {LFRQ, AMD, PMD, WAVEFORM, NFRQ}
@@ -11,6 +11,8 @@ var programs = {}  #Instrument data.
 var currentProgram = {}
 
 func _ready():
+	LIB_PATH = ProjectSettings.globalize_path(LIB_PATH)
+	
 	var dir = Directory.new()
 	if dir.open(LIB_PATH) == OK:
 		dir.list_dir_begin()
