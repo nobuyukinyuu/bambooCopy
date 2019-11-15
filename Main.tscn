@@ -1,16 +1,17 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://AL/Algorithm-0.png" type="Texture" id=3]
-[ext_resource path="res://AL/Algorithm-1.png" type="Texture" id=4]
-[ext_resource path="res://AL/Algorithm-2.png" type="Texture" id=5]
-[ext_resource path="res://AL/Algorithm-3.png" type="Texture" id=6]
-[ext_resource path="res://AL/Algorithm-4.png" type="Texture" id=7]
-[ext_resource path="res://AL/Algorithm-5.png" type="Texture" id=8]
-[ext_resource path="res://AL/Algorithm-6.png" type="Texture" id=9]
-[ext_resource path="res://AL/Algorithm-7.png" type="Texture" id=10]
-[ext_resource path="res://OperatorPanel.tscn" type="PackedScene" id=11]
+[ext_resource path="res://gear.svg" type="Texture" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://AL/Algorithm-0.png" type="Texture" id=4]
+[ext_resource path="res://AL/Algorithm-1.png" type="Texture" id=5]
+[ext_resource path="res://AL/Algorithm-2.png" type="Texture" id=6]
+[ext_resource path="res://AL/Algorithm-3.png" type="Texture" id=7]
+[ext_resource path="res://AL/Algorithm-4.png" type="Texture" id=8]
+[ext_resource path="res://AL/Algorithm-5.png" type="Texture" id=9]
+[ext_resource path="res://AL/Algorithm-6.png" type="Texture" id=10]
+[ext_resource path="res://AL/Algorithm-7.png" type="Texture" id=11]
+[ext_resource path="res://OperatorPanel.tscn" type="PackedScene" id=12]
 
 [sub_resource type="StyleBoxFlat" id=1]
 draw_center = false
@@ -52,41 +53,61 @@ margin_right = 480.0
 margin_bottom = 51.0
 text = "Instruments:"
 
-[node name="lblOpt" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -184.0
-margin_top = 20.0
-margin_right = -21.0
-margin_bottom = 51.0
+margin_left = -194.0
+margin_top = 13.0
+margin_right = -24.0
+margin_bottom = 40.0
+custom_constants/separation = 8
+alignment = 2
+
+[node name="lblOpt" type="Label" parent="HBoxContainer"]
+margin_left = 115.0
+margin_top = 6.0
+margin_right = 170.0
+margin_bottom = 20.0
 text = "Options:"
 align = 2
 
 [node name="lblAL" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -314.0
-margin_top = 150.0
-margin_right = -151.0
-margin_bottom = 170.0
+margin_left = -316.0
+margin_top = 160.0
+margin_right = -153.0
+margin_bottom = 180.0
 text = "Algorithm (AL, CON):"
+
+[node name="btnConfig" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -118.0
+margin_top = 82.0
+margin_right = -22.0
+margin_bottom = 109.0
+rect_min_size = Vector2( 96, 0 )
+custom_constants/hseparation = 4
+text = "Folders..."
+icon = ExtResource( 2 )
 
 [node name="lblEnvelope" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -314.0
-margin_top = 320.0
-margin_right = -151.0
-margin_bottom = 340.0
+margin_left = -316.0
+margin_top = 330.0
+margin_right = -153.0
+margin_bottom = 350.0
 text = "Envelope (EG):"
 
 [node name="ProgramName" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -314.0
-margin_top = 100.0
-margin_right = -21.0
-margin_bottom = 131.0
+margin_left = -316.0
+margin_top = 120.0
+margin_right = -23.0
+margin_bottom = 151.0
 custom_styles/normal = SubResource( 1 )
 text = "Instrument (none selected)"
 align = 1
@@ -101,9 +122,9 @@ margin_left = -354.0
 margin_top = -57.0
 margin_right = -81.0
 margin_bottom = -9.0
-text = "BambooCopy v0.1
+text = "BambooCopy v0.2
 by Nobuyuki
-13.NOV.2019"
+15.NOV.2019"
 align = 2
 
 [node name="Items" type="ItemList" parent="."]
@@ -133,7 +154,7 @@ margin_left = -74.0
 margin_top = -70.0
 margin_right = -10.0
 margin_bottom = -6.0
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="ignoreNoname" type="CheckButton" parent="."]
 anchor_left = 1.0
@@ -150,67 +171,67 @@ align = 2
 editor/display_folded = true
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -314.0
-margin_top = 170.0
-margin_right = -24.0
-margin_bottom = 310.0
+margin_left = -316.0
+margin_top = 180.0
+margin_right = -26.0
+margin_bottom = 320.0
 custom_styles/panel = SubResource( 2 )
 
 [node name="0" type="TextureRect" parent="AL"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="1" type="TextureRect" parent="AL"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="2" type="TextureRect" parent="AL"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
 [node name="3" type="TextureRect" parent="AL"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="4" type="TextureRect" parent="AL"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="5" type="TextureRect" parent="AL"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="6" type="TextureRect" parent="AL"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 
 [node name="7" type="TextureRect" parent="AL"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="OP" type="TabContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -322.0
-margin_top = 340.0
-margin_right = -22.0
-margin_bottom = 490.0
+margin_left = -324.0
+margin_top = 350.0
+margin_right = -24.0
+margin_bottom = 500.0
 tab_align = 0
 
 [node name="M1" type="Tabs" parent="OP"]
@@ -222,7 +243,7 @@ margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="Panel" parent="OP/M1" instance=ExtResource( 11 )]
+[node name="Panel" parent="OP/M1" instance=ExtResource( 12 )]
 
 [node name="C1" type="Tabs" parent="OP"]
 editor/display_folded = true
@@ -234,7 +255,7 @@ margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="Panel" parent="OP/C1" instance=ExtResource( 11 )]
+[node name="Panel" parent="OP/C1" instance=ExtResource( 12 )]
 
 [node name="M2" type="Tabs" parent="OP"]
 editor/display_folded = true
@@ -246,7 +267,7 @@ margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="Panel" parent="OP/M2" instance=ExtResource( 11 )]
+[node name="Panel" parent="OP/M2" instance=ExtResource( 12 )]
 
 [node name="C2" type="Tabs" parent="OP"]
 editor/display_folded = true
@@ -258,30 +279,150 @@ margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="Panel" parent="OP/C2" instance=ExtResource( 11 )]
+[node name="Panel" parent="OP/C2" instance=ExtResource( 12 )]
 
 [node name="Preview" type="Button" parent="."]
 modulate = Color( 0.639216, 0.8, 1, 1 )
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -151.0
-margin_top = 500.0
-margin_right = -28.0
-margin_bottom = 548.0
+margin_left = -147.0
+margin_top = 510.0
+margin_right = -24.0
+margin_bottom = 558.0
 rect_min_size = Vector2( 0, 48 )
 text = "Preview"
 
 [node name="CopyEnvelope" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -284.0
-margin_top = 500.0
-margin_right = -161.0
-margin_bottom = 548.0
+margin_left = -280.0
+margin_top = 510.0
+margin_right = -157.0
+margin_bottom = 558.0
 rect_min_size = Vector2( 0, 48 )
 text = "Copy FM_ENV"
+
+[node name="Config" type="WindowDialog" parent="."]
+visible = true
+margin_left = 1090.0
+margin_top = 200.0
+margin_right = 1855.0
+margin_bottom = 640.0
+popup_exclusive = true
+window_title = "Configure folders...."
+resizable = true
+
+[node name="Folders" type="ItemList" parent="Config"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 30.0
+margin_right = -150.0
+margin_bottom = -10.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Config"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -135.0
+margin_top = 34.0
+margin_right = -15.0
+margin_bottom = -10.0
+custom_constants/separation = 12
+
+[node name="btnNew" type="Button" parent="Config/VBoxContainer"]
+margin_right = 120.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+text = "New..."
+
+[node name="btnRemove" type="Button" parent="Config/VBoxContainer"]
+margin_top = 44.0
+margin_right = 120.0
+margin_bottom = 76.0
+rect_min_size = Vector2( 0, 32 )
+text = "Remove"
+
+[node name="chkRecursive" type="CheckBox" parent="Config/VBoxContainer"]
+margin_top = 88.0
+margin_right = 120.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 0, 32 )
+custom_constants/hseparation = 8
+pressed = true
+text = "Recursive"
+
+[node name="Expander" type="Control" parent="Config/VBoxContainer"]
+margin_top = 132.0
+margin_right = 120.0
+margin_bottom = 308.0
+size_flags_vertical = 3
+
+[node name="Rescan" type="Button" parent="Config/VBoxContainer"]
+modulate = Color( 0.882353, 0.823529, 0.952941, 1 )
+margin_top = 320.0
+margin_right = 120.0
+margin_bottom = 352.0
+rect_min_size = Vector2( 0, 32 )
+text = "Rescan All"
+
+[node name="Okay" type="Button" parent="Config/VBoxContainer"]
+margin_top = 364.0
+margin_right = 120.0
+margin_bottom = 396.0
+rect_min_size = Vector2( 0, 32 )
+text = "OK"
+
+[node name="Label" type="RichTextLabel" parent="Config"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 615.0
+margin_bottom = 30.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.376471 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+bbcode_enabled = true
+bbcode_text = "  Folders beginning with [color=#ffffaa]res://[/color] are considered relative to the local application."
+text = "  Folders beginning with res:// are considered relative to the local application."
+
+[node name="FolderDialog" type="FileDialog" parent="Config"]
+margin_left = 40.0
+margin_top = 180.0
+margin_right = 730.0
+margin_bottom = 520.0
+popup_exclusive = true
+window_title = "Open a Directory"
+mode = 2
+access = 2
+show_hidden_files = true
+current_dir = "d:/projects/godot/code/bambooCopy"
+current_path = "d:/projects/godot/code/bambooCopy/"
+
+[node name="FolderDialog2" type="FileDialog" parent="Config"]
+margin_left = 40.0
+margin_top = 180.0
+margin_right = 730.0
+margin_bottom = 520.0
+popup_exclusive = true
+window_title = "Choose a New Location..."
+mode_overrides_title = false
+mode = 2
+access = 2
+show_hidden_files = true
+current_dir = "d:/projects/godot/code/bambooCopy"
+current_path = "d:/projects/godot/code/bambooCopy/"
+[connection signal="pressed" from="btnConfig" to="." method="_on_btnConfig_pressed"]
 [connection signal="item_activated" from="Items" to="." method="_on_Items_item_activated"]
 [connection signal="item_activated" from="Instruments" to="." method="_on_Instruments_item_activated"]
 [connection signal="item_selected" from="Instruments" to="." method="_on_Instruments_item_selected"]
 [connection signal="pressed" from="Preview" to="." method="_on_Preview_pressed"]
 [connection signal="pressed" from="CopyEnvelope" to="." method="_on_CopyEnvelope_pressed"]
+[connection signal="item_activated" from="Config/Folders" to="." method="_on_Folders_item_activated"]
+[connection signal="item_selected" from="Config/Folders" to="." method="_on_Folders_item_selected"]
+[connection signal="pressed" from="Config/VBoxContainer/btnNew" to="." method="_on_btnNew_pressed"]
+[connection signal="pressed" from="Config/VBoxContainer/btnRemove" to="." method="_on_btnRemove_pressed"]
+[connection signal="toggled" from="Config/VBoxContainer/chkRecursive" to="." method="_on_chkRecursive_toggled"]
+[connection signal="pressed" from="Config/VBoxContainer/Rescan" to="." method="_on_Rescan_pressed"]
+[connection signal="pressed" from="Config/VBoxContainer/Okay" to="." method="_on_Okay_pressed"]
+[connection signal="dir_selected" from="Config/FolderDialog" to="." method="_on_FolderDialog_dir_selected"]
+[connection signal="dir_selected" from="Config/FolderDialog2" to="." method="_on_FolderDialog2_dir_selected"]

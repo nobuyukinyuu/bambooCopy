@@ -1,6 +1,7 @@
 extends Control
-var paths = []
+var paths = []  #File paths
 var LIB_PATH = "res://defaultLibrary/"
+const CONFIGPATH = "res://default.cfg"
 
 #Enums for the MiOPMdrv format positions.
 enum LFO {LFRQ, AMD, PMD, WAVEFORM, NFRQ}
@@ -10,16 +11,53 @@ enum OP {AR, DR, SR, RR, SL, TL, KS, ML, DT, DT2, AMS_ENABLE}
 var programs = {}  #Instrument data.
 var currentProgram = {}
 
+onready var config = ConfigFile.new()
+
+func _notification(what):
+	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+		config.save(CONFIGPATH)
+		print ("Byebye!")
+
 func _ready():
-	LIB_PATH = ProjectSettings.globalize_path(LIB_PATH)
 	
+	#Prepare the config file.
+	if config.load(CONFIGPATH) != OK:
+		config.set_value("Folders", "0", LIB_PATH )
+		config.save(CONFIGPATH)
+	
+	$Config/VBoxContainer/chkRecursive.pressed = config.get_value(
+													"General", "recursive_scan", true)
+	
+	scan_folders()
+
+#Rescans the folder list.
+func scan_folders():
+	$Items.clear()
+	paths.clear()
+	$Config/Folders.clear()
+
+	var f_icon = preload("res://open-folder.svg")
+
+	#Load folders into item list.
+	for f in config.get_section_keys("Folders"):
+		var val = config.get_value("Folders", f, "") 
+		$Config/Folders.add_item(val, f_icon)
+	
+	
+		var d = ProjectSettings.globalize_path(val)
+		try_path(d)
+	
+
+		
+func try_path(path):
 	var dir = Directory.new()
-	if dir.open(LIB_PATH) == OK:
-		dir.list_dir_begin()
+	if dir.open(path) == OK:
+		dir.list_dir_begin(true,true)
 		var file_name = dir.get_next()
 		while (file_name != ""):
 			if dir.current_is_dir():
-				pass
+				if config.get_value("General", "recursive_scan") == true:
+					try_path(path + "/" + file_name)		#Recursive dive!
 			else:
 				if file_name.to_lower().ends_with(".opm"):
 					$Items.add_item(file_name)
@@ -28,7 +66,7 @@ func _ready():
 				
 			file_name = dir.get_next()
 	else:
-		print("An error occurred when trying to access the path.")
+		print("An error occurred accessing the path '%s'." % path)
 
 
 
@@ -164,3 +202,62 @@ func _on_CopyEnvelope_pressed():
 	print (pString)
 	OS.clipboard = pString
 	$lblStatus.text = currentProgram["name"] + " copied.\nPaste into BambooTracker instrument!"
+
+
+#Load config window.
+func _on_btnConfig_pressed():
+	$Config.popup_centered()
+
+#New folder.
+func _on_btnNew_pressed():
+	$Config/FolderDialog.popup_centered()
+
+#New folder location selected.
+func _on_FolderDialog_dir_selected(dir):
+	$Config/Folders.add_item(dir)
+	config.set_value("Folders", str(config.get_section_keys("Folders").size()), dir)
+
+#Select a folder.
+var lastEditedFolderIdx = -1
+func _on_Folders_item_selected(index):
+	lastEditedFolderIdx = index
+
+#Remove a folder.
+func _on_btnRemove_pressed():
+	if lastEditedFolderIdx >= 0:
+		config.erase_section("Folders")
+		$Config/Folders.remove_item(lastEditedFolderIdx)
+		
+		for i in $Config/Folders.get_item_count():
+			config.set_value("Folders", str(i), $Config/Folders.get_item_text(i))
+		
+		lastEditedFolderIdx = -1
+		
+
+#Edit folder location.
+func _on_Folders_item_activated(index):
+	lastEditedFolderIdx = index
+	$Config/FolderDialog2.current_dir = $Config/Folders.get_item_text(index)
+	$Config/FolderDialog2.popup_centered()
+
+#Folder location changed.
+func _on_FolderDialog2_dir_selected(dir):
+	config.set_value("Folders", str(lastEditedFolderIdx), dir)
+	
+	$Config/Folders.set_item_text(lastEditedFolderIdx, dir)
+	pass # Replace with function body.
+
+
+#Close config window.
+func _on_Okay_pressed():
+	$Config.visible = false
+
+
+
+#Recursive folder scanning enable
+func _on_chkRecursive_toggled(button_pressed):
+	config.set_value ("General", "recursive_scan", button_pressed)
+
+#Rescan all folders.
+func _on_Rescan_pressed():
+	scan_folders()
