@@ -122,9 +122,9 @@ margin_left = -354.0
 margin_top = -57.0
 margin_right = -81.0
 margin_bottom = -9.0
-text = "BambooCopy v0.2
+text = "BambooCopy v0.21
 by Nobuyuki
-15.NOV.2019"
+18.NOV.2019"
 align = 2
 
 [node name="Items" type="ItemList" parent="."]
