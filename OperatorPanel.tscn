@@ -25,3 +25,4 @@ script = ExtResource( 1 )
 points = PoolVector2Array( 0, 118, 50, 0, 50, 0, 206, 0, 206, 118, 294, 118 )
 width = 2.0
 default_color = Color( 0.588235, 0.611765, 0.901961, 1 )
+texture_mode = 0

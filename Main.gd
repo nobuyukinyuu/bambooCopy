@@ -61,7 +61,7 @@ func try_path(path):
 			else:
 				if file_name.to_lower().ends_with(".opm"):
 					$Items.add_item(file_name)
-					paths.push_back(file_name)
+					paths.push_back(path + "/" + file_name)
 				
 				
 			file_name = dir.get_next()
@@ -71,7 +71,7 @@ func try_path(path):
 
 
 func _on_Items_item_activated(index):
-	load_opm(LIB_PATH + paths[index])
+	load_opm(paths[index])
 
 
 func load_opm(path):
